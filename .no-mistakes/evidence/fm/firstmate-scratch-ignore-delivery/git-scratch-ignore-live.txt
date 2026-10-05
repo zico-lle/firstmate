@@ -1,0 +1,14 @@
+$ git check-ignore -v -- .scratch/proof/nested-result.txt
+.gitignore:5:.scratch/	.scratch/proof/nested-result.txt
+exit=0
+proof remains on disk: yes
+$ git ls-files --others --exclude-standard -- .scratch/proof/nested-result.txt scratch-control-proof.tmp
+scratch-control-proof.tmp
+exit=0
+$ git status --short --ignored -- .scratch scratch-control-proof.tmp
+?? scratch-control-proof.tmp
+!! .scratch/
+exit=0
+$ git ls-files -- .scratch/proof/nested-result.txt scratch-control-proof.tmp
+exit=0
+RESULT: .scratch proof is preserved locally and excluded; unrelated file is visible to Git; neither file is tracked

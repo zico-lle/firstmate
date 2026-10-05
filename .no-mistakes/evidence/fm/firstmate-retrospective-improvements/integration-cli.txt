@@ -1,0 +1,87 @@
+$ fm-tasks-axi.sh add provider Provider contract --kind ship --repo sample
+ok: added provider (ship, repo sample) -> Queued
+task:
+  id: provider
+  title: Provider contract
+  state: queued
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: sample
+  priority: "-"
+  created: 2026-10-05
+  closed: "-"
+  deps: none
+  links: none
+  body: ""
+help[2]:
+  - Run `tasks-axi start provider` to move it to in flight
+  - Run `tasks-axi block provider --by <other>` to record a dependency
+exit=0
+$ fm-tasks-axi.sh add consumer Consumer delivery --kind ship --repo sample --body Preserve original context.
+ok: added consumer (ship, repo sample) -> Queued
+task:
+  id: consumer
+  title: Consumer delivery
+  state: queued
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: sample
+  priority: "-"
+  created: 2026-10-05
+  closed: "-"
+  deps: none
+  links: none
+  body: Preserve original context.
+help[2]:
+  - Run `tasks-axi start consumer` to move it to in flight
+  - Run `tasks-axi block consumer --by <other>` to record a dependency
+exit=0
+$ fm-integrate-after.sh add consumer provider
+add: consumer integrates after provider
+exit=0
+$ fm-tasks-axi.sh start consumer
+ok: start consumer -> In flight
+help[1]:
+  - Run `tasks-axi done consumer --pr <url>` when it ships
+exit=0
+$ fm-integrate-after.sh check consumer
+fm-integrate-after: consumer consumer must integrate after provider; provider state is queued with no confirmed merge
+exit=2
+$ fm-tasks-axi.sh done provider
+ok: done provider -> Done
+help[1]:
+  - Run `tasks-axi ready` to dispatch work unblocked by this
+exit=0
+$ fm-integrate-after.sh check consumer
+integration-ready: consumer (provider landing confirmed)
+exit=0
+$ fm-tasks-axi.sh show consumer --full
+task:
+  id: consumer
+  title: Consumer delivery
+  state: in_flight
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: sample
+  priority: "-"
+  created: 2026-10-05
+  closed: "-"
+  deps: none
+  links: none
+  body: "Preserve original context.\nintegrate-after: provider"
+exit=0

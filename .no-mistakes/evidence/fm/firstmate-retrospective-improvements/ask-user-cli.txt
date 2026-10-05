@@ -1,0 +1,76 @@
+$ fm-tasks-axi.sh add ship-one A ship --kind ship --repo sample
+ok: added ship-one (ship, repo sample) -> Queued
+task:
+  id: ship-one
+  title: A ship
+  state: queued
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: ship
+  repo: sample
+  priority: "-"
+  created: 2026-10-05
+  closed: "-"
+  deps: none
+  links: none
+  body: ""
+help[2]:
+  - Run `tasks-axi start ship-one` to move it to in flight
+  - Run `tasks-axi block ship-one --by <other>` to record a dependency
+exit=0
+$ fm-ask-user-intake.sh ensure ship-one nm-run-review /var/folders/59/dl6tzfy946x7j66ygkfzzpkw0000gn/T/fm-ask-live-x5emale0/data/ship-one/nm-findings.txt
+held: ask-user-6a115773d35d5a54aebd owner=firstmate
+exit=0
+$ fm-ask-user-intake.sh ensure ship-one nm-run-review /var/folders/59/dl6tzfy946x7j66ygkfzzpkw0000gn/T/fm-ask-live-x5emale0/data/ship-one/nm-findings.txt
+existing: ask-user-6a115773d35d5a54aebd owner=firstmate
+exit=0
+$ fm-tasks-axi.sh show ask-user-6a115773d35d5a54aebd --full
+task:
+  id: ask-user-6a115773d35d5a54aebd
+  title: Review ask-user finding for ship-one
+  state: queued
+  blocked: no
+  blocked_by: none
+  held: yes
+  hold_reason: Firstmate review of ask-user gate nm-run-review
+  hold_kind: parked
+  hold_until: "-"
+  kind: task
+  repo: sample
+  priority: "-"
+  created: 2026-10-05
+  closed: "-"
+  deps: none
+  links: none
+  body: "Ask-user origin: ship-one\nAsk-user key: nm-run-review\nInitial decision owner: firstmate\nFinding snapshot: /var/folders/59/dl6tzfy946x7j66ygkfzzpkw0000gn/T/fm-ask-live-x5emale0/data/ship-one/nm-findings.txt"
+exit=0
+$ fm-ask-user-intake.sh promote ship-one nm-run-review model-routing choose model
+fm-captain-hold: model-routing is Firstmate-owned (owner=firstmate guard=none); a captain hold is not allowed
+exit=1
+$ fm-ask-user-intake.sh resolve ship-one nm-run-review
+resolved: ask-user-6a115773d35d5a54aebd
+exit=0
+$ fm-tasks-axi.sh show ask-user-6a115773d35d5a54aebd --full
+task:
+  id: ask-user-6a115773d35d5a54aebd
+  title: Review ask-user finding for ship-one
+  state: done
+  blocked: no
+  blocked_by: none
+  held: no
+  hold_reason: "-"
+  hold_kind: "-"
+  hold_until: "-"
+  kind: task
+  repo: sample
+  priority: "-"
+  created: "-"
+  closed: 2026-10-05
+  deps: none
+  links: none
+  body: "Ask-user origin: ship-one\nAsk-user key: nm-run-review\nInitial decision owner: firstmate\nFinding snapshot: /var/folders/59/dl6tzfy946x7j66ygkfzzpkw0000gn/T/fm-ask-live-x5emale0/data/ship-one/nm-findings.txt"
+exit=0

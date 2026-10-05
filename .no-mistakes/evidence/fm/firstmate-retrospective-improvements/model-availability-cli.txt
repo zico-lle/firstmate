@@ -1,0 +1,9 @@
+$ /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M46V9DJ08FY7627HKW2SMNTP/bin/fm-model-availability.sh pi anthropic/claude-sonnet-4-5
+{"harness":"pi","model":"anthropic/claude-sonnet-4-5","harnessCatalog":{"status":"available","source":"pi --list-models"},"quotaModelScopes":[],"resolution":"available"}
+exit=0
+$ /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M46V9DJ08FY7627HKW2SMNTP/bin/fm-model-availability.sh pi anthropic/firstmate-nonexistent-model
+{"harness":"pi","model":"anthropic/firstmate-nonexistent-model","harnessCatalog":{"status":"unsupported","source":"pi --list-models"},"quotaModelScopes":[],"resolution":"unsupported-on-this-harness"}
+exit=0
+$ /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M46V9DJ08FY7627HKW2SMNTP/bin/fm-model-availability.sh claude claude-sonnet-4-5
+{"harness":"claude","model":"claude-sonnet-4-5","harnessCatalog":{"status":"unverified","source":"none"},"quotaModelScopes":[],"resolution":"uncertain"}
+exit=0

@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><title>C4 skill live output</title><style>body{font:16px system-ui;background:#fafafa;color:#222;margin:24px}section{background:white;padding:18px;margin:0 0 24px;border:1px solid #ddd}svg{max-width:100%}</style></head><body><h1>C4 skill live output</h1><p>Synthetic design evidence, no deployed system asserted.</p><section><pre class="mermaid">---
+title: C4 System Context — Review service — source/design
+---
+flowchart LR
+  reviewer[&quot;Reviewer&lt;br/&gt;Person&lt;br/&gt;Reviews submissions&quot;]
+  subgraph ownership[&quot;Review service — logical ownership&quot;]
+    review[&quot;Review service&lt;br/&gt;Software system&lt;br/&gt;Supports reviews and records decisions&quot;]
+  end
+  identity[&quot;Identity Service&lt;br/&gt;External software system&lt;br/&gt;Provides identity functionality&quot;]
+  reviewer --&gt;|Uses browser review interface| review
+  review --&gt;|Calls identity functionality| identity
+  key[&quot;KEY: boxes = typed elements; enclosure = logical ownership.&lt;br/&gt;Arrows = directional actions. All elements: source/design evidence.&lt;br/&gt;Internal applications and stores omitted at this level.&quot;]</pre></section>
+<section><pre class="mermaid">---
+title: C4 Containers — Review service — source/design
+---
+flowchart LR
+  reviewer[&quot;Reviewer&lt;br/&gt;Person&lt;br/&gt;Reviews submissions&quot;]
+  subgraph review[&quot;Review service — logical ownership&quot;]
+    ui[&quot;Review UI&lt;br/&gt;Application container: browser JavaScript&lt;br/&gt;Provides review interface&quot;]
+    api[&quot;Review API&lt;br/&gt;Application container: Node.js&lt;br/&gt;Records decisions and processing status&lt;br/&gt;Identity SDK: embedded library in this process&quot;]
+    worker[&quot;Submission worker&lt;br/&gt;Application container: Node.js&lt;br/&gt;Reads documents and updates status&quot;]
+    decisions[(&quot;Decision schema&lt;br/&gt;Data-store container: PostgreSQL&lt;br/&gt;Stores decisions; owned schema&lt;br/&gt;Hosted by managed database provider&quot;)]
+    documents[(&quot;Submission bucket&lt;br/&gt;Data-store container: cloud object storage&lt;br/&gt;Stores submission documents; owned bucket&quot;)]
+  end
+  identity[&quot;Identity Service&lt;br/&gt;External software system&lt;br/&gt;Provides identity functionality&quot;]
+  reviewer --&gt;|Operates interface; browser interaction| ui
+  ui --&gt;|Calls Review API; HTTPS JSON| api
+  api --&gt;|Calls through embedded Identity SDK; HTTPS JSON| identity
+  api --&gt;|Writes decisions; protocol unspecified| decisions
+  worker --&gt;|Reads submission documents; protocol unspecified| documents
+  worker --&gt;|Updates processing status; HTTPS JSON| api
+  key[&quot;KEY: boxes = typed actors/applications/systems; cylinders = stores.&lt;br/&gt;Enclosure = logical ownership, not deployment or network trust.&lt;br/&gt;Arrows = directional actions. All elements: source/design evidence.&lt;br/&gt;UI = user interface; API = application programming interface;&lt;br/&gt;SDK = software development kit; HTTPS = secure HTTP;&lt;br/&gt;JSON = JavaScript Object Notation.&quot;]</pre></section><script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad:true,securityLevel:'loose'});</script></body></html>

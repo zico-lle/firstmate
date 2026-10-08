@@ -1,0 +1,6 @@
+Valid repository inventory:
+fm-doc-audience-check: ok surfaces=117 local_links=757
+
+Duplicate classification attempt:
+fm-doc-audience-check: surfaces classified more than once: .agents/skills/afk/SKILL.md
+Reject exit code: 1

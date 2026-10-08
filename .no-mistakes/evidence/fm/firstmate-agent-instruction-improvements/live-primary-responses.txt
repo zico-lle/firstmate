@@ -1,0 +1,22 @@
+Captain, GitHub PR comments and reviews now trigger notifications. Shall I merge https://github.com/kunchenguid/firstmate/pull/6891?
+
+=== NEXT LIVE TURN ===
+
+Captain, PR #742 is ready for your review. Shall I merge it after your approval?
+
+=== NEXT LIVE TURN ===
+
+Captain, I would select `xhigh` effort for the ambiguous architecture investigation. The `harness-adapters` skill’s `references/common/model-and-effort.md` owns that fallback. I would not use `max`; it requires an explicit captain preference.
+
+=== NEXT LIVE TURN ===
+
+Captain, I would send:
+
+`codex / gpt-5.6-sol / xhigh`
+
+Candidate accounting:
+
+- **Codex profile:** The current Codex catalog explicitly lists `gpt-5.6-sol` with `xhigh`. Codex quota is 48% remaining, `spendPriority=-1.5227`, with about 37 hours of projected runway—ample for the likely investigation horizon. Codex authentication sources are available.
+- **Claude profile:** The installed Claude runtime supports the `sonnet` alias, but quota is unmeasurable: no Claude quota row, `spendPriority=unknown`, and runway unknown. Authentication is also uncertain: its OAuth file is expired and keychain access was skipped, not proven unusable. `sonnet/high` is also below the strongest configured reasoning profile for this ambiguous architecture work.
+
+The `quota-array-dispatch` skill therefore selects the known-feasible, stronger-reasoning Codex profile rather than treating Claude’s unknown quota as healthy.

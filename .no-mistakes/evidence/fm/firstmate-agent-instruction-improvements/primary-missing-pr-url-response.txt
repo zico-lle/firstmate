@@ -1,0 +1,23 @@
+ not change files or call tools.
+
+
+ Captain, GitHub PR comments and reviews now trigger
+ notifications. Shall I merge
+ https://github.com/kunchenguid/firstmate/pull/6891?
+
+
+ A separate ready status says PR #742 is ready for
+ review, but it contains no URL or pr= metadata.
+ Give the final captain-facing reply asking for
+ review. Do not search, run commands, or infer a
+ URL; answer directly.
+
+
+ Captain, PR #742 is ready for your review. Shall I
+ merge it after your approval?
+
+─────────────────────────────────────────────────────
+
+─────────────────────────────────────────────────────
+~/.no-mistakes/worktrees/34f7e211b23b/01M4EGEV8TX3...
+↑19k ↓59 R18k CH98.6% $0.083 (sub) 6.8%/272k (auto)

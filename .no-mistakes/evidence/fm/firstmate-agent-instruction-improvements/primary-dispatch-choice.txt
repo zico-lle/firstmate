@@ -1,0 +1,23 @@
+   with about 37 hours of projected runway—ample for
+   the likely investigation horizon. Codex
+   authentication sources are available.
+ - Claude profile: The installed Claude runtime
+   supports the sonnet alias, but quota is
+   unmeasurable: no Claude quota row,
+   spendPriority=unknown, and runway unknown.
+   Authentication is also uncertain: its OAuth file
+   is expired and keychain access was skipped, not
+   proven unusable. sonnet/high is also below the
+   strongest configured reasoning profile for this
+   ambiguous architecture work.
+
+ The quota-array-dispatch skill therefore selects
+ the known-feasible, stronger-reasoning Codex
+ profile rather than treating Claude’s unknown quota
+ as healthy.
+
+─────────────────────────────────────────────────────
+
+─────────────────────────────────────────────────────
+~/.no-mistakes/worktrees/34f7e211b23b/01M4EGEV8TX3...
+↑74k ↓4.2k R364k CH98.1% $0.524 (sub) 14.8%/272k (...

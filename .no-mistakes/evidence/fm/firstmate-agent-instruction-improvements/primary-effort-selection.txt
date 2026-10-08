@@ -1,0 +1,23 @@
+
+ [skill] harness-adapters:1-2000 (ctrl+o to expand)
+
+
+
+ read
+ ~/.no-mistakes/worktrees/34f7e211b23b/01M4EGEV8TX33
+ R8W1Y7XVKVSH7/.agents/skills/harness-adapters/refer
+ ences/common/model-and-effort.md:1-2000
+
+
+ Captain, I would select xhigh effort for the
+ ambiguous architecture investigation. The
+ harness-adapters skill’s
+ references/common/model-and-effort.md owns that
+ fallback. I would not use max; it requires an
+ explicit captain preference.
+
+─────────────────────────────────────────────────────
+
+─────────────────────────────────────────────────────
+~/.no-mistakes/worktrees/34f7e211b23b/01M4EGEV8TX3...
+↑42k ↓320 R55k CH0.0% $0.195 (sub) 7.7%/272k (auto)

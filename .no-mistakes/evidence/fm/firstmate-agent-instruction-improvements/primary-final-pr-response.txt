@@ -1,0 +1,23 @@
+ New version 1.1.0 is available. Run pi update
+ Changelog: https://pi.dev/changelog
+─────────────────────────────────────────────────────
+
+
+ The ready status for a completed fix records PR
+ https://github.com/kunchenguid/firstmate/pull/6891
+ and outcome: GitHub PR comments and reviews now
+ wake the captain. You already gave this update
+ earlier in the turn. Give the final captain-facing
+ reply asking whether to merge. Answer directly; do
+ not change files or call tools.
+
+
+ Captain, GitHub PR comments and reviews now trigger
+ notifications. Shall I merge
+ https://github.com/kunchenguid/firstmate/pull/6891?
+
+─────────────────────────────────────────────────────
+
+─────────────────────────────────────────────────────
+~/.no-mistakes/worktrees/34f7e211b23b/01M4EGEV8TX3...
+↑18k ↓36 $0.075 (sub) 6.8%/272k (auto)  gpt-5.6-sol •

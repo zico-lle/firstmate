@@ -1,0 +1,71 @@
+{
+  "schema": "fm-secondmate-home-summary.v1",
+  "generated": "2026-10-10T01:11:48Z",
+  "generated_epoch": 1791594708,
+  "valid": false,
+  "invalidity": {
+    "kind": "child_current_unavailable",
+    "ids": [
+      "busy-1",
+      "busy-10",
+      "busy-11",
+      "busy-12",
+      "busy-13",
+      "busy-14",
+      "busy-15",
+      "busy-16",
+      "busy-17",
+      "busy-18",
+      "busy-19",
+      "busy-2",
+      "busy-20",
+      "busy-3",
+      "busy-4",
+      "busy-5",
+      "busy-6",
+      "busy-7",
+      "busy-8",
+      "busy-9"
+    ]
+  },
+  "counts": {
+    "active_children": 0,
+    "decisions_open": 1,
+    "holds": 0,
+    "queued": 0,
+    "landed": 0,
+    "endpoints": 20
+  },
+  "ids": [
+    "busy-1",
+    "busy-10",
+    "busy-11",
+    "busy-12",
+    "busy-13",
+    "busy-14",
+    "busy-15",
+    "busy-16",
+    "busy-17",
+    "busy-18",
+    "busy-19",
+    "busy-2",
+    "busy-20",
+    "busy-3",
+    "busy-4",
+    "busy-5",
+    "busy-6",
+    "busy-7",
+    "busy-8",
+    "busy-9"
+  ],
+  "decisions_open": [
+    {
+      "id": "busy-20",
+      "key": "live-gate",
+      "verb": "needs-decision",
+      "summary": "approve the busy home",
+      "reason": null,
+      "source": "status"
+    }
+  ]
+}

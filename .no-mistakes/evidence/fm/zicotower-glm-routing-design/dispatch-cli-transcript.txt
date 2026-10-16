@@ -1,0 +1,159 @@
+CASE: uppercase-and-dot shadow record
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 shadow
+exit=0
+stdout: /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/home/data/Fix.1/dispatch-evidence.jsonl
+stderr: 
+
+CASE: uppercase-and-dot outcome record
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 outcome
+exit=0
+stdout: /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/home/data/Fix.1/dispatch-evidence.jsonl
+stderr: 
+
+Persisted private evidence (mode 0600):
+{"at":"2026-10-16T01:39:37.691975+00:00","confidence":0.9,"kind":"shadow","proposed":"demo/demo-model","schema":"fm-dispatch-evidence.v1","selected":"codex/gpt","task":"Fix.1","task_class":"bounded coding"}
+{"accepted":true,"at":"2026-10-16T01:39:37.771273+00:00","cloud_egress":false,"elapsed_seconds":12,"interventions":0,"kind":"outcome","model":"demo-model","provider":"demo","rework_minutes":0,"run_id":"manual-1","schema":"fm-dispatch-evidence.v1","task":"Fix.1","task_class":"bounded coding"}
+
+
+CASE: path traversal rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record ../escape shadow
+exit=2
+stdout: stderr: error: invalid task id
+
+
+CASE: prompt rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 shadow
+exit=2
+stdout: stderr: error: row contains a field outside the dispatch-evidence allowlist
+
+
+CASE: nested value rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 shadow
+exit=2
+stdout: stderr: error: row values must be bounded JSON scalars
+
+
+CASE: invalid duration rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 outcome
+exit=2
+stdout: stderr: error: outcome acceptance and durations have invalid types
+
+
+CASE: nonfinite rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 outcome
+exit=2
+stdout: stderr: error: invalid JSON constant NaN
+
+
+CASE: overlong field rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Fix.1 shadow
+exit=2
+stdout: stderr: error: row values must be bounded JSON scalars
+
+
+CASE: symlink task directory rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Linked shadow
+exit=2
+stdout: stderr: error: task data directory must already exist and must not be a symlink
+
+
+CASE: symlink evidence file rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh record Target shadow
+exit=2
+stdout: stderr: error: dispatch evidence target must not be a symlink
+
+
+CASE: healthy exact tuple and forced tool call
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=0
+stdout: {"base_url":"http://127.0.0.1:63247/v1","context_window":16384,"health":"ok","max_tokens":2048,"selector":"demo/demo-model","served_context_window":16384,"served_model":"demo-model","served_revision":"fixture-revision","tool_canary":"passed"}
+stderr: 
+
+CASE: loading endpoint rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=2
+stdout: stderr: error: local endpoint health is not ready
+
+
+CASE: redirect endpoint rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=2
+stdout: stderr: error: local endpoint redirected the request
+
+
+CASE: bad-tool endpoint rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=2
+stdout: stderr: error: local endpoint did not return a complete structured tool call
+
+
+CASE: insufficient serving context rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=2
+stdout: stderr: error: local endpoint context is absent or below the Pi catalog window
+
+
+CASE: model alias mismatch rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/other --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:63247/v1
+exit=2
+stdout: stderr: error: Pi catalog does not contain exactly one OpenAI-completions model tuple
+
+
+CASE: expected endpoint mismatch rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:9/v1
+exit=2
+stdout: stderr: error: Pi catalog base URL differs from expected URL
+
+
+CASE: missing independent expected endpoint rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json
+exit=2
+stdout: stderr: error: selector must name provider and model, with --expected-url
+
+
+CASE: public endpoint rejected before network access
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://8.8.8.8:8000/v1
+exit=2
+stdout: stderr: error: local base URL must be loopback or Tailnet IP:port ending in /v1
+
+
+CASE: unavailable endpoint rejected
+$ FM_HOME=<disposable-home> bin/fm-dispatch-evidence.sh check-local demo/demo-model --catalog /Users/zicofernandes/.no-mistakes/worktrees/34f7e211b23b/01M515NNRHF0B7TR5Y8KZ285CZ/.tmp-dispatch-validation/models.json --expected-url http://127.0.0.1:9/v1
+exit=2
+stdout: stderr: error: local endpoint unavailable: <urlopen error [Errno 61] Connection refused>
+
+
+Disposable endpoint received requests:
+[
+  "/health",
+  "/v1/models",
+  {
+    "path": "/v1/chat/completions",
+    "model": "demo-model",
+    "tool_choice": {
+      "type": "function",
+      "function": {
+        "name": "probe"
+      }
+    }
+  },
+  "/health",
+  "/v1/models",
+  "/health",
+  "/health",
+  "/v1/models",
+  {
+    "path": "/v1/chat/completions",
+    "model": "demo-model",
+    "tool_choice": {
+      "type": "function",
+      "function": {
+        "name": "probe"
+      }
+    }
+  },
+  "/health",
+  "/v1/models"
+]
+
+All direct CLI assertions passed; endpoint is a disposable protocol dependency, not a real model or hardware performance trial.
